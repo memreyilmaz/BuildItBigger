@@ -18,8 +18,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tell_a_joke_button"
+        android:onClick="tellJoke"
         android:layout_below="@+id/instructions_text_view"
-        android:onClick="launchDetailActivity"
         android:text="@string/button_text" />
 
     <com.google.android.gms.ads.AdView

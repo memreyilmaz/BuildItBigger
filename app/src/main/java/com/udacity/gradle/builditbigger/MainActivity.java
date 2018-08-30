@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,17 +9,16 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.android.detailactivity.DetailActivity;
-import com.example.android.javajokes.Joker;
 
 
-public class MainActivity extends AppCompatActivity {
-    String joke;
+public class MainActivity extends AppCompatActivity implements EndpointsAsyncTask.JokeRetrieverListener {
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*public void tellJoke(View view) {
-        getTheJoke();
-        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
-    }*/
+    public void tellJoke(View view) {
+        //getTheJoke();
+        //Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
+        //new EndpointsAsyncTask(this).execute();
+        new EndpointsAsyncTask(this).execute();
+    }
 
     /*public void getTheJoke(){
         Joker myJoker = new Joker();
@@ -53,11 +55,27 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void launchDetailActivity(View view) {
-        Joker myJoker = new Joker();
-        joke = myJoker.getJoke();
+        //Joker myJoker = new Joker();
+        //joke = myJoker.getJoke();
+        //  Intent myIntent = new Intent(this, DetailActivity.class);
+        //  myIntent.putExtra("key", joke);
+        //  startActivity(myIntent);
+    }
+
+    @Override
+    public void onJokeRetrieved(String joke) {
         Intent myIntent = new Intent(this, DetailActivity.class);
         myIntent.putExtra("key", joke);
         startActivity(myIntent);
     }
 
+   /* @Override
+    public void onJokeRetrieved(String joke) {
+          Intent myIntent = new Intent(this, DetailActivity.class);
+          myIntent.putExtra("key", joke);
+          startActivity(myIntent);
+
+    }*/
 }
+
+
